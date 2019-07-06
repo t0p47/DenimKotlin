@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="capital"
+                type="com.t0p47.capitals.model.Capital"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/imgView"
+                    android:layout_weight="1"
+                    app:imageUrl="@{capital.images[0]}"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvCapital"
+                    android:layout_toRightOf="@+id/imgView"
+                    android:layout_alignParentTop="true"
+                    android:text="@{capital.capital}"
+                    android:visibility="gone"
+                    android:textSize="30sp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvCountry"
+                    android:layout_toRightOf="@+id/imgView"
+                    android:layout_below="@+id/tvCapital"
+                    android:visibility="gone"
+                    android:text="@{capital.country}"/>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
