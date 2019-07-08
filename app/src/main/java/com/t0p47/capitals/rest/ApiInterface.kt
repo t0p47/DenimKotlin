@@ -7,7 +7,6 @@ import android.net.NetworkInfo
 import androidx.core.content.ContextCompat.getSystemService
 import com.t0p47.capitals.model.CapitalResponse
 import com.t0p47.capitals.rest.NetworkIterceptor.ConnectivityInterceptor
-import com.t0p47.capitals.rest.NetworkIterceptor.NetworkConnectionInterceptor
 import io.reactivex.Observable
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

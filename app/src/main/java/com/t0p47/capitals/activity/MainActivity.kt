@@ -23,18 +23,17 @@ import io.reactivex.schedulers.Schedulers
 class MainActivity : AppCompatActivity() {
 
     val TAG = "LOG_TAG"
+    private lateinit var viewModel: MyViewModel
     lateinit var binding: ActivityMainBinding
-    private var disposable: Disposable? = null
     private var capitalsList: ArrayList<Capital>? = null
-
-    private val capitalsService by lazy{
-        ApiInterface.create()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        val viewModel = ViewModelProviders.of(this).get(MyViewModel::class.java)
+
+        viewModel = ViewModelProviders.of(this).get(MyViewModel::class.java)
+        binding.vm = viewModel
+
 
         viewModel.loadRepositories()
         binding.rvView.layoutManager = LinearLayoutManager(this)
@@ -47,22 +46,19 @@ class MainActivity : AppCompatActivity() {
                 capitalsList!!.add(capital)
                 binding.rvView.adapter?.notifyDataSetChanged()
             }*/
-            intent = Intent(this, NewCapitalActivity::class.java)
+            val intent = Intent(this, NewCapitalActivity::class.java)
             startActivityForResult(intent, 1)
         }
 
         viewModel.repositories.observe(this,
-            Observer<ArrayList<Capital>>{ it?.let{
-                Log.d("LOG_TAG", "Get data from internet")
-                binding.rvView.adapter = capitalsList?.let { CardViewAdapter(it) }
+            Observer<ArrayList<Capital>>{ it ->
+                it?.let{
+                Log.d("LOG_TAG", "MainActivity: Get data from internet")
+                Log.d("LOG_TAG", "MainActivity: CapitalList size - ${it.size}" +
+                        ", firstCapital: ${it[0].capital}")
+                capitalsList = it
+                binding.rvView.adapter = CardViewAdapter(capitalsList!!)
             }})
-        //getCapitalSecond()
-        //getCapitals()
-
-        /*
-        capitalsList = capitalResponse.capitals
-        binding.rvView.adapter = capitalsList?.let { CardViewAdapter(it) }
-        */
     }
 
     @SuppressLint("MissingSuperCall")
@@ -85,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun getCapitalSecond(){
+    /*private fun getCapitalSecond(){
         disposable = capitalsService.getCapitals()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -93,7 +89,7 @@ class MainActivity : AppCompatActivity() {
                 { result -> showResult(result) },
                 { error -> Toast.makeText(this, error.message, Toast.LENGTH_SHORT).show() }
             )
-    }
+    }*/
 
     private fun showResult(capitalResponse: CapitalResponse){
         Log.d("LOG_TAG","Response complete")

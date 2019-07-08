@@ -25,11 +25,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvDescription"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/imgView"
-        android:layout_weight="1"/>
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvImages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"/>
 
 </LinearLayout>
 </layout>
