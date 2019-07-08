@@ -5,11 +5,11 @@ import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class ConnectivityInterceptor: Interceptor {
+class ConnectivityInterceptor(isNetworkActive: Observable<Boolean>) : Interceptor {
 
-    var isNetworkActive: Boolean = false
+    private var isNetworkActive: Boolean = false
 
-    constructor(isNetworkActive: Observable<Boolean>){
+    init {
         isNetworkActive.subscribe(
             { _isNetworkActive -> this.isNetworkActive = _isNetworkActive},
             { _error -> Log.e("LOG_TAG", "Error: ${_error.message}")}
@@ -20,8 +20,7 @@ class ConnectivityInterceptor: Interceptor {
         if(!isNetworkActive){
             throw NoConnectivityException()
         }else{
-            val response = chain.proceed(chain.request())
-            return response
+            return chain.proceed(chain.request())
         }
     }
 

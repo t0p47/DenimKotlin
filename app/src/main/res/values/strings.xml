@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Capitals</string>
+
+    <string name="capital">Capital</string>
+    <string name="country">Country</string>
+    <string name="description">Description</string>
+    <string name="image_links">Image links(comma separated)</string>
+    <string name="add_new_capital">Add new capital</string>
 </resources>

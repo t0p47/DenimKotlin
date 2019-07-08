@@ -1,0 +1,13 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="fab_margin">32dp</dimen>
+    <dimen name="card_margin">5dp</dimen>
+    <dimen name="capital_cover_height">160dp</dimen>
+    <dimen name="capital_title_padding">10dp</dimen>
+    <dimen name="capital_title">15sp</dimen>
+    <dimen name="capitals_count_padding_bottom">5dp</dimen>
+    <dimen name="capitals_count">12sp</dimen>
+    <dimen name="ic_capital_overflow_width">20dp</dimen>
+    <dimen name="ic_capital_overflow_height">30dp</dimen>
+    <dimen name="ic_capital_overflow_margin_top">10dp</dimen>
+</resources>

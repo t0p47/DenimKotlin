@@ -21,11 +21,12 @@ class CapitalActivity : AppCompatActivity() {
         binding.tvDescription.text = intent.getStringExtra("description")
 
         val imgList = intent.getStringExtra("images")
-        if(imgList.isNotEmpty()){
+
+        if(imgList != null && imgList.isNotEmpty()){
             val imgArray: ArrayList<String> = if(imgList.contains(",")){
-                (imgList?.split(",")) as ArrayList
+                (imgList.split(",")) as ArrayList
             }else{
-                arrayListOf(imgList!!)
+                arrayListOf(imgList)
             }
 
             binding.rvImages.layoutManager = GridLayoutManager(this, 2)

@@ -1,10 +1,6 @@
 package com.t0p47.capitals.rest
 
 import android.content.Context
-import android.content.Context.CONNECTIVITY_SERVICE
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
-import androidx.core.content.ContextCompat.getSystemService
 import com.t0p47.capitals.model.CapitalResponse
 import com.t0p47.capitals.rest.NetworkIterceptor.ConnectivityInterceptor
 import io.reactivex.Observable
@@ -22,7 +18,7 @@ interface ApiInterface {
 
     companion object Factory{
 
-        val BASE_URL = "https://gitlab.com/snippets/"
+        private const val BASE_URL = "https://gitlab.com/snippets/"
         fun create(context: Context): ApiInterface{
             val retrofit = Retrofit.Builder()
                 .baseUrl(BASE_URL)
@@ -34,23 +30,11 @@ interface ApiInterface {
         }
 
         private fun provideOkHttpClient(context: Context): OkHttpClient{
-            var okHttpClientBuilder = OkHttpClient.Builder()
+            val okHttpClientBuilder = OkHttpClient.Builder()
             okHttpClientBuilder.connectTimeout(30, TimeUnit.SECONDS)
             okHttpClientBuilder.readTimeout(30, TimeUnit.SECONDS)
             okHttpClientBuilder.writeTimeout(30, TimeUnit.SECONDS)
             okHttpClientBuilder.addInterceptor(ConnectivityInterceptor(Observable.just(NetworkUtil.hasNetwork(context))))
-
-            /*okHttpClientBuilder.addInterceptor(object: NetworkConnectionInterceptor() {
-                override fun isInternetAvailable(): Boolean{
-                    return isInternetAvailable()
-                }
-
-                override fun onInternetUnavailable(){
-                    if(mInternetConnectionListener != null){
-                        mInternetConnectionListener.onInternetUnavailable()
-                    }
-                }
-            }) */
 
             return okHttpClientBuilder.build()
         }

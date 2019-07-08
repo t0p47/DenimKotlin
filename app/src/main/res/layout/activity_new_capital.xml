@@ -3,7 +3,6 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -14,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Capital"
+            android:hint="@string/capital"
             android:ems="10"
             android:id="@+id/etCapital"/>
 
@@ -22,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Country"
+            android:hint="@string/country"
             android:ems="10"
             android:id="@+id/etCountry"/>
 
@@ -30,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Description"
+        android:hint="@string/description"
         android:ems="10"
         android:id="@+id/etDescription"/>
 
@@ -38,14 +37,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:hint="Image links(comma separated)"
+        android:hint="@string/image_links"
         android:ems="10"
         android:id="@+id/etImgLinks"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add new capital"
+        android:text="@string/add_new_capital"
         android:id="@+id/btnAddCapital"/>
 
 </LinearLayout>
